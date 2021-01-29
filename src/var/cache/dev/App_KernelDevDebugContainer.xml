@@ -970,15 +970,6 @@
       <call method="addLoader">
         <argument type="service" id="routing.loader.container"/>
       </call>
-      <call method="addLoader">
-        <argument type="service" id="routing.loader.annotation"/>
-      </call>
-      <call method="addLoader">
-        <argument type="service" id="routing.loader.annotation.directory"/>
-      </call>
-      <call method="addLoader">
-        <argument type="service" id="routing.loader.annotation.file"/>
-      </call>
     </service>
     <service id="routing.loader.xml" class="Symfony\Component\Routing\Loader\XmlFileLoader">
       <tag name="routing.loader"/>
@@ -1074,20 +1065,6 @@
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\TemplateController" class="Symfony\Bundle\FrameworkBundle\Controller\TemplateController" public="true">
       <argument>null</argument>
-    </service>
-    <service id="routing.loader.annotation" class="Symfony\Bundle\FrameworkBundle\Routing\AnnotatedRouteControllerLoader">
-      <tag name="routing.loader" priority="-10"/>
-      <argument>null</argument>
-    </service>
-    <service id="routing.loader.annotation.directory" class="Symfony\Component\Routing\Loader\AnnotationDirectoryLoader">
-      <tag name="routing.loader" priority="-10"/>
-      <argument type="service" id="file_locator"/>
-      <argument type="service" id="routing.loader.annotation"/>
-    </service>
-    <service id="routing.loader.annotation.file" class="Symfony\Component\Routing\Loader\AnnotationFileLoader">
-      <tag name="routing.loader" priority="-10"/>
-      <argument type="service" id="file_locator"/>
-      <argument type="service" id="routing.loader.annotation"/>
     </service>
     <service id="secrets.vault" class="Symfony\Bundle\FrameworkBundle\Secrets\SodiumVault">
       <tag name="container.env_var_loader"/>
