@@ -3,7 +3,7 @@ FROM php:7-fpm
 RUN apt-get update \
  && apt-get install -y bzip2 git vim wget \
         libxslt1.1 libxslt1-dev \
-        libicu-dev \
+        libicu-dev libzip-dev\
         libmcrypt-dev \
         libfreetype6-dev libjpeg62-turbo-dev \
  && apt-get clean \
