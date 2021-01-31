@@ -16,7 +16,5 @@ RUN docker-php-ext-install gd \
  && docker-php-ext-install xsl \
  && docker-php-ext-install zip \
  && pecl install redis && docker-php-ext-enable redis
-
-RUN chmod -R 777 /var/www/var/cache /var/www/var/logs
-
+ 
 EXPOSE 9000
