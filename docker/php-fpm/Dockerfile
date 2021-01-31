@@ -9,13 +9,14 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install gd \
+RUN docker-php-source extract \
+ && docker-php-ext-install ext-install gd \
  && docker-php-ext-install intl \
- && docker-php-ext-install mcrypt \
  && docker-php-ext-install opcache \
  && docker-php-ext-install pdo_mysql mysqli \
  && docker-php-ext-install xsl \
  && docker-php-ext-install zip \
- && pecl install redis && docker-php-ext-enable redis
+ && pecl install redis && docker-php-ext-enable redis \
+ && docker-php-source delete
 
 EXPOSE 9000
