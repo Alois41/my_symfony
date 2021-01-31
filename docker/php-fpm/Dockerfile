@@ -16,4 +16,7 @@ RUN docker-php-ext-install gd \
  && docker-php-ext-install xsl \
  && docker-php-ext-install zip \
  && pecl install redis && docker-php-ext-enable redis
+
+RUN chown -R www-data:www-data /var/www
+
 EXPOSE 9000
