@@ -1,4 +1,4 @@
-FROM shaula/rpi-php7-fpm
+FROM php:7-fpm
 
 RUN apt-get update \
  && apt-get install -y bzip2 git vim wget \
