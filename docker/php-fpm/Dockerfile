@@ -16,5 +16,7 @@ RUN docker-php-ext-install gd \
  && docker-php-ext-install xsl \
  && docker-php-ext-install zip \
  && pecl install redis && docker-php-ext-enable redis
+
+RUN mkdir -p /var/www/var/log && mkdir -p /var/www/var/cache
  
 EXPOSE 9000
