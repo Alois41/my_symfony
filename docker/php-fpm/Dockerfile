@@ -1,18 +1,21 @@
-FROM php:7.4-fpm-alpine 
+FROM shaula/rpi-php7-fpm
 
-RUN rm -rf /var/cache/apk/* && \
-    rm -rf /tmp/*
-    
-COPY wait-for-it.sh /usr/bin/wait-for-it
+RUN apt-get update \
+ && apt-get install -y bzip2 git vim wget \
+        libxslt1.1 libxslt1-dev \
+        libicu-dev \
+        libmcrypt-dev \
+        libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN chmod +x /usr/bin/wait-for-it
-
-RUN docker-php-ext-install pdo_mysql
-
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-
-WORKDIR /var/www
-
-CMD composer install ; wait-for-it database:3306 -- bin/console doctrine:migrations:migrate ;  php-fpm 
+RUN docker-php-ext-install gd \
+ && docker-php-ext-install intl \
+ && docker-php-ext-install mcrypt \
+ && docker-php-ext-install opcache \
+ && docker-php-ext-install pdo_mysql mysqli \
+ && docker-php-ext-install xsl \
+ && docker-php-ext-install zip \
+ && pecl install redis && docker-php-ext-enable redis
 
 EXPOSE 9000
